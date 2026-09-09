@@ -1,0 +1,16 @@
+
+MIXFINDER V5 PREMIUM — LE PLUS SIMPLE
+
+OBJECTIF : obtenir MixFinder Setup.exe sans installer Python.
+
+OPTION RECOMMANDÉE : GITHUB
+1. Va sur github.com et crée un compte si nécessaire.
+2. Crée un dépôt privé "MixFinder".
+3. Upload tout le contenu de ce ZIP.
+4. Clique sur "Actions".
+5. Ouvre "Build MixFinder Windows".
+6. Clique "Run workflow".
+7. Quand c'est terminé, télécharge "MixFinder-Windows-Installers".
+8. Installe le fichier .exe.
+
+La V5 récupère automatiquement l'index existant de MixFinder.

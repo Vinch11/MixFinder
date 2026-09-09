@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <script>
+      // Captured as early as possible — before the app bundle even starts
+      // downloading — so a fast `beforeinstallprompt` firing during that
+      // window isn't lost to a React listener that hasn't mounted yet.
+      window.addEventListener("beforeinstallprompt", function (e) {
+        e.preventDefault();
+        window.__pwaInstallEvent = e;
+        window.dispatchEvent(new Event("pwa-install-ready"));
+      });
+    </script>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <title>Two For Coaching — Coaching fitness personnalisé</title>
+    <meta name="description" content="Two For Coaching. Coaching collectif, personal training et accompagnement individualisé vers tous les objectifs et pour tous les niveaux.">
+    <meta name="author" content="Two4Coaching" />
+    <meta name="theme-color" content="#0066cc" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="apple-mobile-web-app-title" content="2C" />
+    <link rel="apple-touch-icon" href="/pwa-192x192.png" />
+
+    
+    
+    <meta property="og:type" content="website" />
+    
+
+    <meta name="twitter:card" content="summary_large_image" />
+    
+    <meta property="og:title" content="Two For Coaching — Coaching fitness personnalisé">
+  <meta name="twitter:title" content="Two For Coaching — Coaching fitness personnalisé">
+  <meta property="og:description" content="Two For Coaching. Coaching collectif, personal training et accompagnement individualisé vers tous les objectifs et pour tous les niveaux.">
+  <meta name="twitter:description" content="Two For Coaching. Coaching collectif, personal training et accompagnement individualisé vers tous les objectifs et pour tous les niveaux.">
+  <link rel="icon" type="image/png" href="/pwa-192x192.png">
+</head>
+
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>
