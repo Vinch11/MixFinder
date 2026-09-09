@@ -18,7 +18,8 @@ jobs:
         run: |
           if (Test-Path "v5-build") { Remove-Item "v5-build" -Recurse -Force }
           New-Item -ItemType Directory -Path "v5-build" | Out-Null
-          Expand-Archive -Path "MixFinder_V5_Source.zip" -DestinationPath "v5-build" -Force
+          tar -xf "MixFinder_V5_Source.zip" -C "v5-build"
+          if (-not (Test-Path "v5-build/package.json")) { throw "MixFinder source archive was not extracted correctly." }
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
