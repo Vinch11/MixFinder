@@ -4,6 +4,9 @@ on:
   workflow_dispatch:
   push:
     branches: [ "main" ]
+    paths:
+      - "mixfinder-v5/**"
+      - ".github/workflows/build-windows.yml"
 
 jobs:
   build:
@@ -12,14 +15,6 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
-
-      - name: Prepare MixFinder V5 source
-        shell: pwsh
-        run: |
-          if (Test-Path "v5-build") { Remove-Item "v5-build" -Recurse -Force }
-          New-Item -ItemType Directory -Path "v5-build" | Out-Null
-          tar -xf "MixFinder_V5_Source.zip" -C "v5-build"
-          if (-not (Test-Path "v5-build/package.json")) { throw "MixFinder source archive was not extracted correctly." }
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
@@ -30,11 +25,11 @@ jobs:
         uses: dtolnay/rust-toolchain@stable
 
       - name: Install frontend dependencies
-        working-directory: v5-build
+        working-directory: mixfinder-v5
         run: npm install
 
       - name: Build MixFinder Windows installers
-        working-directory: v5-build
+        working-directory: mixfinder-v5
         run: npm run tauri build
 
       - name: Upload Windows installers
@@ -43,5 +38,5 @@ jobs:
           name: MixFinder-Windows-Installers
           if-no-files-found: error
           path: |
-            v5-build/src-tauri/target/release/bundle/msi/*.msi
-            v5-build/src-tauri/target/release/bundle/nsis/*.exe
+            mixfinder-v5/src-tauri/target/release/bundle/msi/*.msi
+            mixfinder-v5/src-tauri/target/release/bundle/nsis/*.exe
