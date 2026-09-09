@@ -1,0 +1,213 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Two4Coaching Design System
+   Premium + Fitness inspirant féminin
+   Base claire, accent terracotta/corail doux
+   All colors MUST be HSL.
+*/
+
+@layer base {
+  :root {
+    /* Light theme - BOLD & VIBRANT */
+    --background: 220 20% 97%;
+    --foreground: 220 30% 10%;
+
+    /* Cards - Glassmorphism ready */
+    --card: 0 0% 100%;
+    --card-foreground: 220 30% 10%;
+
+    /* Popover */
+    --popover: 0 0% 100%;
+    --popover-foreground: 220 30% 10%;
+
+    /* Primary - Bleu électrique intense */
+    --primary: 210 100% 45%;
+    --primary-foreground: 0 0% 100%;
+
+    /* Secondary - Cyan néon */
+    --secondary: 175 85% 40%;
+    --secondary-foreground: 0 0% 100%;
+
+    /* Muted */
+    --muted: 220 15% 92%;
+    --muted-foreground: 220 15% 32%;
+
+    /* Accent - Orange vif */
+    --accent: 25 100% 55%;
+    --accent-foreground: 0 0% 100%;
+
+    /* Tertiary - Magenta énergique */
+    --tertiary: 330 85% 55%;
+    --tertiary-foreground: 0 0% 100%;
+
+    /* Destructive */
+    --destructive: 0 85% 55%;
+    --destructive-foreground: 0 0% 100%;
+
+    /* Borders & inputs */
+    --border: 220 15% 88%;
+    --input: 220 15% 88%;
+    --ring: 210 100% 45%;
+
+    --radius: 1rem;
+
+    /* Sidebar */
+    --sidebar-background: 220 20% 96%;
+    --sidebar-foreground: 220 25% 15%;
+    --sidebar-primary: 210 100% 45%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 25 100% 55%;
+    --sidebar-accent-foreground: 0 0% 100%;
+    --sidebar-border: 220 15% 88%;
+    --sidebar-ring: 210 100% 45%;
+
+    /* Custom Two4Coaching tokens - BOLD */
+    --shadow-soft: 0 4px 30px -4px hsl(210 100% 40% / 0.15);
+    --shadow-card: 0 8px 32px -8px hsl(220 30% 20% / 0.12);
+    --shadow-elevated: 0 20px 60px -15px hsl(210 100% 30% / 0.25);
+    --shadow-glow: 0 0 40px -10px hsl(25 100% 55% / 0.4);
+    
+    /* Gradients VIBRANTS */
+    --gradient-primary: linear-gradient(135deg, hsl(210 100% 45%) 0%, hsl(175 85% 40%) 100%);
+    --gradient-accent: linear-gradient(135deg, hsl(25 100% 55%) 0%, hsl(330 85% 55%) 100%);
+    --gradient-hero: linear-gradient(135deg, hsl(210 100% 45%) 0%, hsl(330 85% 55%) 50%, hsl(25 100% 55%) 100%);
+    --gradient-glass: linear-gradient(135deg, hsl(0 0% 100% / 0.9) 0%, hsl(0 0% 100% / 0.7) 100%);
+  }
+
+  .dark {
+    --background: 210 25% 8%;
+    --foreground: 210 15% 92%;
+
+    --card: 210 20% 11%;
+    --card-foreground: 210 15% 92%;
+
+    --popover: 210 20% 10%;
+    --popover-foreground: 210 15% 92%;
+
+    --primary: 200 80% 50%;
+    --primary-foreground: 210 25% 8%;
+
+    --secondary: 185 55% 50%;
+    --secondary-foreground: 210 25% 8%;
+
+    --muted: 210 15% 18%;
+    --muted-foreground: 210 10% 55%;
+
+    --accent: 25 65% 55%;
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 62% 45%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 210 15% 18%;
+    --input: 210 15% 18%;
+    --ring: 200 80% 50%;
+
+    --sidebar-background: 210 20% 6%;
+    --sidebar-foreground: 210 15% 85%;
+    --sidebar-primary: 200 80% 50%;
+    --sidebar-primary-foreground: 210 25% 8%;
+    --sidebar-accent: 25 65% 55%;
+    --sidebar-accent-foreground: 0 0% 100%;
+    --sidebar-border: 210 15% 15%;
+    --sidebar-ring: 200 80% 50%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans antialiased;
+    font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-display font-semibold tracking-tight;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  /* Fix descender clipping (j, p, q, g, y) on gradient text spans.
+     bg-clip-text crops the glyph box, so we add bottom padding + relaxed
+     line-height + display:inline-block so descenders are fully rendered. */
+  .bg-clip-text.text-transparent,
+  .text-transparent.bg-clip-text {
+    display: inline-block;
+    padding-bottom: 0.15em;
+    line-height: 1.1;
+  }
+
+  .animate-fade-in {
+    animation: fadeIn 0.6s ease-out forwards;
+  }
+
+  .animate-fade-in-up {
+    animation: fadeInUp 0.6s ease-out forwards;
+  }
+
+  .animate-slide-in-left {
+    animation: slideInLeft 0.6s ease-out forwards;
+  }
+
+  .animate-slide-in-right {
+    animation: slideInRight 0.6s ease-out forwards;
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Respect reduced motion preference */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
