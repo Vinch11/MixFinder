@@ -1,3 +1,5 @@
+#![cfg_attr(not(debug_assertions), windows_subsystem = "windows")]
+
 use regex::Regex;
 use serde::{Deserialize, Serialize};
 use std::{fs, path::{Path, PathBuf}, process::Command};
@@ -128,8 +130,8 @@ async fn scan_folder(folder: String) -> Result<IndexData, String> {
 #[tauri::command]
 fn open_mix(path: String) -> Result<(), String> {
     if !Path::new(&path).exists() { return Err("Le fichier n'existe plus.".into()); }
-    Command::new("cmd")
-        .args(["/C", "start", "", &path])
+    Command::new("explorer")
+        .arg(&path)
         .spawn()
         .map_err(|e| e.to_string())?;
     Ok(())
